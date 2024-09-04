@@ -1,0 +1,11 @@
+limesurvey_docker_path: /opt/limesurvey
+limesurvey_docker_file_owner: root
+limesurvey_docker_file_group: root
+
+# Limesurvey Admin Password
+limesurvey_docker_admin_username: limesurvey
+limesurvey_docker_admin_password: ""
+
+# Limesurvey Database Variables
+limesurvey_docker_db_username: limesurvey
+limesurvey_docker_db_password: ""

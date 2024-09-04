@@ -1,0 +1,6 @@
+# Limesurvey Admin Password
+limesurvey_docker_admin_password: supersecret
+
+# Limesurvey Database Variables
+limesurvey_docker_db_username: postgres
+limesurvey_docker_db_password: supersecret

@@ -1,0 +1,41 @@
+- name: Create limesurvey directory
+  ansible.builtin.file:
+    path: "{{ limesurvey_docker_path }}"
+    owner: "{{ limesurvey_docker_file_owner }}"
+    group: "{{ limesurvey_docker_file_group }}"
+    state: directory
+    mode: 0755
+
+- name: Create limesurvey docker environment
+  ansible.builtin.template:
+    src: env.j2
+    dest: "{{ limesurvey_docker_path }}/.env"
+    owner: "{{ limesurvey_docker_file_owner }}"
+    group: "{{ limesurvey_docker_file_group }}"
+    trim_blocks: false
+    mode: 0644
+  notify: restart limesurvey
+
+- name: Create limesurvey docker deployment
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ limesurvey_docker_path }}/docker-compose.yml"
+    owner: "{{ limesurvey_docker_file_owner }}"
+    group: "{{ limesurvey_docker_file_group }}"
+    trim_blocks: false
+    mode: 0644
+  notify: restart limesurvey
+
+- name: Validate docker compose file
+  ansible.builtin.command: docker compose config --quiet
+  args:
+    chdir: "{{ limesurvey_docker_path }}"
+  changed_when: false
+
+- name: Startup container
+  ansible.builtin.command: >-
+    docker compose --ansi never --progress plain up --detach
+  args:
+    chdir: "{{ limesurvey_docker_path }}"
+  register: limesurvey_container_startup
+  changed_when: "'Started' in limesurvey_container_startup.stdout"

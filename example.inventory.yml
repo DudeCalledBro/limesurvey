@@ -1,0 +1,4 @@
+all:
+  hosts:
+    limesurvey.local:
+      ansible_user: ansible

@@ -1,0 +1,28 @@
+{{ ansible_managed | comment}}
+---
+services:
+  limesurvey:
+    image: docker.io/martialblog/limesurvey:latest
+    platform: "{{ 'linux/arm64' if ansible_architecture == 'arm64' else 'linux/amd64' }}"
+    container_name: limesurvey
+    depends_on:
+    - lime-db
+    ports:
+    - 8080:8080
+    env_file:
+    - path: "{{ limesurvey_docker_path }}/.env"
+      required: true
+    volumes:
+    - "/etc/localtime:/etc/localtime:ro"
+    - "{{ limesurvey_docker_path }}/surveys:/var/www/html/upload/surveys:rw"
+
+  lime-db:
+    image: docker.io/postgres:latest
+    platform: "{{ 'linux/arm64' if ansible_architecture == 'arm64' else 'linux/amd64' }}"
+    container_name: lime-db
+    env_file:
+    - path: "{{ limesurvey_docker_path }}/.env"
+      required: true
+    volumes:
+    - "/etc/localtime:/etc/localtime:ro"
+    - "{{ limesurvey_docker_path }}/data:/var/lib/postgresql/data:rw"
