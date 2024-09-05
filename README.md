@@ -22,8 +22,6 @@ Im Rahmen einer Projektarbeit war es notwendig eine Umfrage zu erstellen. Ich ha
     ansible-playbook play-survey.yml
     ```
 
-    > Notice: Checkout the possible environment variables for Pi-hole (e.g. `TZ` or `WEBPASSWORD`). Check it out [here](https://github.com/pi-hole/docker-pi-hole?tab=readme-ov-file#environment-variables).
-
 ## To-Do
 
 - TLS-Verschlüsselung der Container implementieren, sodass die Survey Software im Browser mit `https://` angesprochen werden kann. Certbot?
