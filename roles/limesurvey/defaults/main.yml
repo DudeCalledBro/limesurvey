@@ -3,9 +3,13 @@ limesurvey_docker_file_owner: root
 limesurvey_docker_file_group: root
 
 # Limesurvey Admin Password
-limesurvey_docker_admin_username: limesurvey
+limesurvey_docker_admin_username: admin
 limesurvey_docker_admin_password: ""
 
 # Limesurvey Database Variables
 limesurvey_docker_db_username: limesurvey
 limesurvey_docker_db_password: ""
+
+# Limesurvey Docker Expose
+limesurvey_docker_port: 8080
+limesurvey_docker_expose: 127.0.0.1

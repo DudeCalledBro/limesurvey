@@ -4,9 +4,16 @@
     ansible.builtin.include_vars: config.yml
 
   roles:
+  - role: httpd
   - role: limesurvey
 
   post_tasks:
-  - name: Ensure Limesurvey http is reachable (port 8080)
+  - name: Ensure limesurvey is reachable (port 8080)
     ansible.builtin.wait_for:
+      host: "{{ limesurvey_docker_expose | default(127.0.0.1) }}"
       port: 8080
+
+  - name: Ensure httpd is reachable (port 443)
+    ansible.builtin.wait_for:
+      host: 0.0.0.0
+      port: 443

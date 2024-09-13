@@ -1,0 +1,11 @@
+httpd_docker_path: /opt/httpd
+httpd_docker_file_owner: root
+httpd_docker_file_group: root
+
+# Apache2 Limesurvey Host Configuration
+httpd_limesurvey_host: 127.0.0.1
+httpd_limesurvey_port: 8080
+
+# Apache2 TLS Certificates
+httpd_docker_key: ""
+httpd_docker_crt: ""

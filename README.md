@@ -16,15 +16,13 @@ Im Rahmen einer Projektarbeit war es notwendig eine Umfrage zu erstellen. Ich ha
     - Ansible Inventory erstellen: `cp example.inventory.yml inventory.yml`
     - Ansible Variablen erstellen: `cp example.config.yml config.yml`
 
+> **Wichtig!** Bitte erstelle ein TLS Zertifikat und hinterlege dies in den Variablen `httpd_docker_key` und  `httpd_docker_crt`.
+
 2. Danach kann das Playbook zum Rollout der Software gestartet werden:
 
     ```bash
     ansible-playbook play-survey.yml
     ```
-
-## To-Do
-
-- TLS-Verschlüsselung der Container implementieren, sodass die Survey Software im Browser mit `https://` angesprochen werden kann. Certbot?
 
 ## Lizenz
 

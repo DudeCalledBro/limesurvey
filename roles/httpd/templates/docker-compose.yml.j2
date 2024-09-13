@@ -1,0 +1,13 @@
+{{ ansible_managed | comment}}
+---
+services:
+  proxy:
+    image: docker.io/httpd:alpine
+    platform: "{{ 'linux/arm64' if ansible_architecture == 'arm64' else 'linux/amd64' }}"
+    container_name: proxy
+    network_mode: host
+    volumes:
+    - "/etc/localtime:/etc/localtime:ro"
+    - "{{ httpd_docker_path }}/certs:/certs:ro"
+    - "{{ httpd_docker_path }}/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro"
+    - "{{ httpd_docker_path }}/httpd-ssl.conf:/usr/local/apache2/conf/extra/httpd-ssl.conf:ro"
